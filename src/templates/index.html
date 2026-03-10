@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlantHealth AI</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>PlantHealth</h1>
+        <p>Plant Disease Detection using Leaf Images</p>
+    </header>
+
+    <div class="container">
+        <h2>Upload Leaf Image</h2>
+        <p style="color: #666; font-size: 0.9rem; margin-bottom: 20px;">
+            Select a photo of a plant leaf to start the AI analysis.
+        </p>
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="upload-section">
+                <input type="file" name="file" accept="image/*" id="file" required class="visually-hidden">
+                
+                <label for="file" class="custom-file-upload">
+                    Choose File
+                </label>
+                
+                <span id="file-name" class="file-name-text">No file chosen.</span>
+            </div>
+            <button type="submit">Run Analysis</button>
+        </form>
+
+        {% if result %}
+            <div class="result-card">
+                <div class="result-text">Diagnosis: {{ result }}</div>
+                <img src="{{ url_for('static', filename=image) }}" alt="Analyzed Leaf Image">
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
